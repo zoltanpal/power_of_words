@@ -3,9 +3,9 @@ from typing import List, Optional, Tuple
 
 import psycopg2
 from psycopg2 import sql, pool
-from psycopg2.extras import RealDictCursor, DictCursor
+from psycopg2.extras import RealDictCursor
 
-from config import pow_db_config, POW_DB_CONFIG
+from config import POW_DB_CONFIG
 
 
 class DBSession:

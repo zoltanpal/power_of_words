@@ -2,7 +2,19 @@ import logging
 import re
 
 
-def setup_logging_to_file(log_file, log_level=logging.DEBUG):
+def setup_logging_to_file(log_file, log_level=logging.DEBUG) -> logging.Logger:
+    """
+    Sets up logging to a specified file with a given log level.
+
+    Args:
+        log_file (str): The path to the log file.
+        log_level (int): The logging level (default is logging.DEBUG).
+
+    Returns:
+        logging.Logger: A configured logger object.
+    """
+
+
     # Create a logger specific to the log file
     logger = logging.getLogger(log_file)
     logger.setLevel(log_level)  # Set the log level for the logger
@@ -22,21 +34,45 @@ def setup_logging_to_file(log_file, log_level=logging.DEBUG):
 
 
 def clean_url(url: str) -> str:
+    """
+    Cleans a URL by removing specific patterns like "/rss" or "/feed".
+
+    Args:
+        url (str): The URL to be cleaned.
+
+    Returns:
+        str: The cleaned URL.
+    """
     # Define regex pattern to match "/rss" or "/feed"
     pattern = r'/rss|/feed'
     return re.sub(pattern, '', url)
 
 
 def remove_photo_video(text: str) -> str:
+    """
+    Removes references to photos or videos from a text.
+
+    Args:
+        text (str): The text to be cleaned.
+
+    Returns:
+        str: The text with photo and video references removed.
+    """
+
     pattern = re.compile(r'\s*[-+]\s*(fotó(?:kkal)?|videó(?:kkal)?|fotók|videók)?[!.,;]?\s*$|\s+fotó\s*$',
                          re.IGNORECASE)
     return re.sub(pattern, '', text)
 
 
-def jsonify_query_result(query_result):
+def jsonify_query_result(query_result) -> List[dict]:
     """
-    Converts SQLAlchemy query result to a list of dictionaries
-    ready for JSON serialization.
+    Converts an SQLAlchemy query result to a list of dictionaries for JSON serialization.
+
+    Args:
+        query_result: The SQLAlchemy query result.
+
+    Returns:
+        List[dict]: A list of dictionaries representing the query result.
     """
     result_dict_list = []
     for row in query_result:
