@@ -1,0 +1,37 @@
+{% block content %}
+
+{% set additional_args = {} %}
+
+{% for key, value in filters.items() %}
+{% if value is not none and value != '' %}
+{% set _ = additional_args.update({key: value}) %}
+{% endif %}
+{% endfor %}
+
+<div class="pagination">
+    <div class="ui basic buttons">
+
+        <button class="ui {% if feeds.has_prev == False %}disabled{% endif %} button" onClick="paginateTo(page=1);">
+            <a href="{{ url_for('feeds.index', page=1, **additional_args) }}" title="first page">&lt;&lt;&nbsp;first
+                page</a>
+        </button>
+
+        <button class="ui {% if feeds.has_prev == False %}disabled{% endif %} button">
+            <a href="{{ url_for('feeds.index', page=feeds.prev_num, **additional_args) }}" title="prev page">&lt;&nbsp;prev
+                page</a>
+        </button>
+
+        <button class="ui {% if feeds.has_next == False %}disabled{% endif %} button">
+            <a href="{{ url_for('feeds.index', page=feeds.next_num, **additional_args) }}">next page&nbsp;&gt;</a>
+        </button>
+
+        <button class="ui {% if feeds.has_next == False %}disabled{% endif %} button">
+            <a href="{{ url_for('feeds.index', page=feeds.pages, **additional_args) }}">last page&nbsp;&gt;&gt;</a>
+        </button>
+
+
+    </div>
+</div>
+
+
+{% endblock %}

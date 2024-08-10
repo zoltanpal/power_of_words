@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="ui segment mysegment">
+    {% include 'elements/chart_search_form.html' %}
+</div>
+
+
+<div class="ui stackable two column grid">
+    <div class="ui column">
+        <div class="ui segment">
+            {% include 'elements/charts/sentiment_by_source.html' %}
+        </div>
+    </div>
+    <div class="ui column">
+        <div class="ui segment">
+            {% include 'elements/charts/sentiment_over_time.html' %}
+        </div>
+    </div>
+</div>
+
+<div class="ui stackable one column grid">
+    <div class="ui column">
+        <div class="ui segment">
+            {% include 'elements/charts/word_cloud.html' %}
+        </div>
+    </div>
+</div>
+
+
+<div class="ui stackable two column grid">
+    <div class="ui column">
+        <div class="ui segment">
+            <h4>Words by week</h4>
+            soon...
+        </div>
+    </div>
+    <div class="ui column">
+        <div class="ui segment">
+            <h4>Words by month</h4>
+            soon...
+        </div>
+    </div>
+</div>
+
+{% endblock %}

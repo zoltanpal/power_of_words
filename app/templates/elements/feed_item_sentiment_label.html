@@ -1,0 +1,20 @@
+{% block content %}
+     {% set tooltip_text = '<b>Negative:</b> ' + ((feed.negative * 100) | round(2))|string + '%<br>' +
+                        '<b>Neutral:</b> ' + ((feed.neutral * 100) | round(2))|string + '%<br>' +
+                        '<b>Positive:</b> ' + ((feed.positive * 100) | round(2))|string + '%' %}
+
+    {% if feed.max_sentiment_name == 'negative' %}
+        <div class="ui label big basic red" data-html="{{ tooltip_text | safe }}">
+    {% endif %}
+    {% if feed.max_sentiment_name == 'positive' %}
+        <div class="ui label big basic green" data-html="{{ tooltip_text | safe }}">
+    {% endif %}
+    {% if feed.max_sentiment_name == 'neutral' %}
+        <div class="ui label big basic" data-html="{{ tooltip_text|safe }}">
+    {% endif %}
+        {{ feed.max_sentiment_name|upper}}
+
+    </div>
+
+
+{% endblock %}

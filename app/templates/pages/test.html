@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Single Vertical Bar Chart</title>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <style>
+        /* Custom CSS for styling the chart */
+        .highcharts-plot-background {
+            fill: none;
+        }
+        .highcharts-data-labels {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="container" style="width:500px; height:120px;"></div>
+
+<script>
+
+function displaySentimentChart(data, divID) {
+    Highcharts.chart(divID, {
+      chart: {
+          type: 'bar'
+      },
+          title: {
+          text: null // Remove the title
+      },
+          credits: {
+          enabled: false // Disable the Highcharts credits
+      },
+      xAxis: {
+          categories: [],
+          visible: false
+      },
+      yAxis: {
+          visible: false
+      },
+      plotOptions: {
+          series: {
+              stacking: 'stacked',
+              dataLabels: {
+                  enabled: false,
+                  format: '{point.y:.2f}' // Display data labels with two decimal places
+              }
+          },
+          bar: {
+              pointWidth: 100, // Adjust the width of the bar
+              borderWidth: 0,
+              dataLabels: {
+                  inside: true
+              }
+          }
+      },
+      tooltip: {
+          formatter: function(e) {
+              var key = this.series.name;
+              var value = data[key.toLowerCase()];
+              return '<span>' + key + ': <b>' + value + '</b></span><br/>';
+          }
+      },
+      legend: {
+          enabled: false // Disable legend
+      },
+      series: [{
+          name: 'Positive',
+          data: [0, data.positive],
+          color: '#AFD198'
+      }, {
+          name: 'Neutral',
+          data: [0, data.neutral],
+          color: '#E8EFCF'
+      }, {
+          name: 'Negative',
+          data: [0, data.negative],
+          color: '#ECCA9C'
+      }]
+  });
+}
+
+
+// Sample data (replace with your actual data)
+var data = {positive: 0.85374, negative: 0.126906409859657, neutral: 0.009590954519808292};
+
+// Create the chart
+
+</script>
+
+</body>
+</html>

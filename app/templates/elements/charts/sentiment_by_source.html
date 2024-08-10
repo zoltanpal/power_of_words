@@ -1,0 +1,52 @@
+{% block content %}
+<div id="sentiment_by_source_container"></div>
+<script>
+Highcharts.chart('sentiment_by_source_container', {
+    chart: {
+        type: 'bar'
+    },
+    title: {
+        text: 'Sentiment by Sources',
+        align: 'center'
+    },
+    subtitle: {
+        text: '{{ filters.start_date }} - {{ filters.end_date }}'
+    },
+    xAxis: {
+        categories: {{ categories|tojson }}
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: '# of feeds over time'
+        }
+    },
+    legend: {
+        reversed: true
+    },
+    plotOptions: {
+        series: {
+            stacking: 'normal',
+            dataLabels: {
+                enabled: true
+            }
+        }
+    },
+    series: [{
+        name: 'Negative',
+        data: {{ sentiment_by_source_series['Negative']|tojson }},
+        color: '#FA7070'
+    }, {
+        name: 'Neutral',
+        data: {{ sentiment_by_source_series['Neutral']|tojson }},
+        color: '#FFEC9E'
+    }, {
+        name: 'Positive',
+        data: {{ sentiment_by_source_series['Positive']|tojson }},
+        color: '#8DECB4'
+    }]
+});
+
+</script>
+
+{% endblock %}

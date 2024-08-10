@@ -1,0 +1,51 @@
+{% block content %}
+
+{% set form_free_text_input = '' %}
+{% if request.args.get('free_text') is not none and request.args.get('free_text') != '' %}
+{% set form_free_text_input = request.args.get('free_text') %}
+{% endif %}
+
+<form id="FeedSearchForm" action="{{ url_for('feeds.index') }}" class="ui form searchform">
+    <div class="four fields">
+        <input type="hidden" name="start_date" id="startDateInput"
+               value="{{ filters.start_date }}"/>
+
+        <input type="hidden" name="end_date" id="endDateInput"
+               value="{{ filters.end_date }}"/>
+
+        <diV class="field ui icon input">
+            <input type="text" id="DateRangePicker" autocomplete="off"
+                   class="datepicker" placeholder="Published date range"
+                   style="width: 240px">
+            <i class="calendar icon"></i>
+        </diV>
+
+        <div class="field">
+            <select id="SearchWordsSelectize" name="words" class="ui text" multiple="" placeholder="search for words"></select>
+        </div>
+        <select id="source_ids" name="sources" multiple="" class="ui dropdown feed_sources">
+            <option value="1" {% if '1' in filters.sources %} selected {% endif %}>444.hu</option>
+            <option value="2" {% if '2' in filters.sources %} selected {% endif %}>telex.hu</option>
+            <option value="3" {% if '3' in filters.sources %} selected {% endif %}>24.hu</option>
+            <option value="4" {% if '4' in filters.sources %} selected {% endif %}>origo.hu</option>
+            <option value="5" {% if '5' in filters.sources %} selected {% endif %}>hirado.hu</option>
+            <option value="6" {% if '6' in filters.sources %} selected {% endif %}>magyarnemzet.hu</option>
+            <option value="7" {% if '7' in filters.sources %} selected {% endif %}>index.hu</option>
+        </select>
+
+        <div class="field">
+            <input id="free_text" type="text" name="free_text" placeholder="free text search" autocomplete="off"
+                   value="{{ form_free_text_input }}">
+        </div>
+
+        <div class="field">
+            <input type="submit" value="Search" class="ui primary button"/>
+        </div>
+    </div>
+
+
+    <script>
+
+    </script>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="ui segment mysegment">
+{% include 'elements/feeds_search_form.html' %}
+</div>
+
+<div class="ui segment feed large">
+    {% for feed in feeds %}
+
+
+    <div class="event" style="margin: 10px 0 20px 0">
+        <div class="content">
+            <div class="ui grid middle aligned">
+                <div class="thirteen wide column">
+                    <h3 style="font-size: 1.5em; margin: 5px 0 10px 0; font-weight: 400; color: #2f4550;">
+                        {{ feed.title|highlight_words(selected_words)|safe }}&nbsp;
+
+                    </h3>
+                    <div class="date" style="margin-left: 0px; font-size: 0.9em">
+                        {{ feed.published.strftime('%B %d(%a), %Y %H:%M:%S') }}&nbsp;&bull;&nbsp;{{
+                        sources[feed.source_id] }}
+                    </div>
+                </div>
+                <div class="three wide column">
+                    {% include 'elements/feed_item_sentiment_label.html' %}
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="ui divider"></div>
+
+    {% endfor %}
+
+
+
+</div>
+<div class="ui segment mysegment">
+    {% include 'elements/feeds_pagination.html' %}
+</div>
+{% endblock %}

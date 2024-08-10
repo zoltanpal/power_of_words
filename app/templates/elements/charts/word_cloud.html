@@ -1,0 +1,40 @@
+{% block content %}
+<div id="word_cloud_container"></div>
+<script>
+
+var defaultValue = {
+    series: [{
+        type: 'wordcloud',
+        data: {{ most_common_words|tojson }},
+        name: 'Occurrences',
+        rotation: {
+            from: -20,
+            to: 20,
+            orientations: 10
+        },
+    }],
+    title: {
+        text: 'Wordcloud over time',
+        align: 'center'
+    },
+    subtitle: {
+        text: '{{ filters.start_date }} - {{ filters.end_date }}'
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size: 16px"><b>{point.key}</b></span><br>'
+    }
+};
+
+Highcharts.seriesTypes.wordcloud.prototype.deriveFontSize = function(relativeWeight) {
+    var maxFontSize = 55;
+    // Will return a fontSize based on maxFontSize.
+    var rWeight = Math.floor(maxFontSize * relativeWeight);
+    var size = rWeight < 1 ? 1 : rWeight;
+    return size;
+};
+
+Highcharts.chart('word_cloud_container', defaultValue);
+
+</script>
+
+{% endblock %}

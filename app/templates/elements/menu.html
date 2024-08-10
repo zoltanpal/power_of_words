@@ -1,0 +1,20 @@
+{% block content %}
+
+<div class="ui secondary pointing menu">
+    <div class="ui container">
+        <h3 class="ui item brand">
+            <a href="/"><img height="33" src="/static/favicon.png" />Power of Words</a>
+        </h3>
+
+        <a href="/feeds" class="ui item {% if request.path == '/feeds/' %} active blue {% endif %}">
+            <i class="ui icon rss"></i>Feeds
+        </a>
+        <a href="/analytics" class="ui item {% if request.path == '/analytics/' %} active blue {% endif %}">
+            <i class="ui icon chart area"></i>Analytics
+        </a>
+    </div>
+
+
+</div>
+
+{% endblock %}

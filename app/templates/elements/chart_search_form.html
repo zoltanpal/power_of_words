@@ -1,0 +1,33 @@
+{% block content %}
+
+<form id="FeedSearchForm" action="{{ url_for('charts.index') }}" class="ui form searchform">
+    <div class="four fields">
+        <input type="hidden" name="start_date" id="startDateInput"
+               value="{{ filters.start_date }}"/>
+
+        <input type="hidden" name="end_date" id="endDateInput"
+               value="{{ filters.end_date }}"/>
+
+        <diV class="field ui icon input">
+            <input type="text" id="DateRangePicker" autocomplete="off"
+                   class="datepicker" placeholder="Published date range"
+                   style="width: 220px">
+            <i class="calendar icon"></i>
+        </diV>
+
+        <div class="field">
+            <select id="SearchWordsSelectize" name="words" class="ui text" multiple="" placeholder="search for words"></select>
+        </div>
+
+        <div class="field">
+            <input id="free_text" type="text" name="free_text" placeholder="free text search" autocomplete="off"
+                   value="{{ filters.free_text }}">
+        </div>
+
+        <div class="field">
+            <input type="submit" value="Search" class="ui primary button"/>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

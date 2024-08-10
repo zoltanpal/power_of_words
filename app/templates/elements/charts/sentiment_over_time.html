@@ -1,0 +1,59 @@
+{% block content %}
+<div id="sentiment_over_time_container"></div>
+
+<script>
+  Highcharts.chart('sentiment_over_time_container', {
+    chart: {
+        type: 'area'
+    },
+    title: {
+        text: 'Sentiment over time',
+        align: 'center'
+    },
+    subtitle: {
+        text: '{{ filters.start_date }} - {{ filters.end_date }}'
+    },
+    yAxis: {
+
+        title: {
+            useHTML: true,
+            text: '# of feeds over time'
+        }
+    },
+    xAxis: {
+        categories: {{ sentiment_by_time_series_dates|tojson }},
+    },
+    tooltip: {
+        shared: true,
+        headerFormat: '<span style="font-size:12px"><b>{point.key}</b></span><br>'
+    },
+    plotOptions: {
+        area: {
+            stacking: 'normal',
+            lineColor: '#666666',
+            lineWidth: 1,
+            marker: {
+                lineWidth: 1,
+                lineColor: '#666666'
+            }
+        }
+    },
+    series: [{
+        name: 'Positive',
+        data: {{ sentiment_by_time_series['Positive']|tojson }},
+        color: '#8DECB4'
+    }, {
+        name: 'Neutral',
+        data: {{ sentiment_by_time_series['Neutral']|tojson }},
+        color: '#FFEC9E'
+
+    }, {
+        name: 'Negative',
+        data: {{ sentiment_by_time_series['Negative']|tojson }},
+        color: '#FA7070'
+    }]
+});
+
+</script>
+
+{% endblock %}
