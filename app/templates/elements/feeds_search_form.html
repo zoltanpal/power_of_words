@@ -6,13 +6,12 @@
 {% endif %}
 
 <form id="FeedSearchForm" action="{{ url_for('feeds.index') }}" class="ui form searchform">
+    <input type="hidden" name="start_date" id="startDateInput"
+           value="{{ filters.start_date }}"/>
+
+    <input type="hidden" name="end_date" id="endDateInput"
+           value="{{ filters.end_date }}"/>
     <div class="four fields">
-        <input type="hidden" name="start_date" id="startDateInput"
-               value="{{ filters.start_date }}"/>
-
-        <input type="hidden" name="end_date" id="endDateInput"
-               value="{{ filters.end_date }}"/>
-
         <diV class="field ui icon input">
             <input type="text" id="DateRangePicker" autocomplete="off"
                    class="datepicker" placeholder="Published date range"
@@ -20,10 +19,10 @@
             <i class="calendar icon"></i>
         </diV>
 
-        <div class="field">
+        <div class="field ui">
             <select id="SearchWordsSelectize" name="words" class="ui text" multiple="" placeholder="search for words"></select>
         </div>
-        <select id="source_ids" name="sources" multiple="" class="ui dropdown feed_sources">
+        <select id="source_ids" name="sources" multiple="" class="field ui dropdown feed_sources">
             <option value="1" {% if '1' in filters.sources %} selected {% endif %}>444.hu</option>
             <option value="2" {% if '2' in filters.sources %} selected {% endif %}>telex.hu</option>
             <option value="3" {% if '3' in filters.sources %} selected {% endif %}>24.hu</option>
@@ -33,12 +32,12 @@
             <option value="7" {% if '7' in filters.sources %} selected {% endif %}>index.hu</option>
         </select>
 
-        <div class="field">
+        <div class="field ui">
             <input id="free_text" type="text" name="free_text" placeholder="free text search" autocomplete="off"
                    value="{{ form_free_text_input }}">
         </div>
 
-        <div class="field">
+        <div class="field ui">
             <input type="submit" value="Search" class="ui primary button"/>
         </div>
     </div>

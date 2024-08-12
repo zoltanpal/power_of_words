@@ -1,0 +1,7 @@
+[flake8]
+# ignore the following:
+# W503: line break before binary operator
+# E203: Whitespace before ':'
+max-line-length = 120
+ignore = W503, E203
+exclude = docker, venv, .venv, .poetry

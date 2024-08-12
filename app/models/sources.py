@@ -1,4 +1,4 @@
-from app.database import db
+from libs.database import db
 
 
 class Sources(db.Model):

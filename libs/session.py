@@ -2,7 +2,7 @@ from threading import Lock
 from typing import List, Optional, Tuple
 
 import psycopg2
-from psycopg2 import sql, pool
+from psycopg2 import pool, sql
 from psycopg2.extras import RealDictCursor
 
 from config import POW_DB_CONFIG
@@ -118,7 +118,9 @@ class DBSession:
         params = tuple(conditions.values())
         return condition_string, params
 
-    def get_one_where(self, table: str, columns: List[str] = None, conditions: dict = None):
+    def get_one_where(
+        self, table: str, columns: List[str] = None, conditions: dict = None
+    ):
         """
         Fetch a single row from the table that matches the conditions.
 
@@ -134,9 +136,7 @@ class DBSession:
         cond_string, params = self.__generate_conditions(conditions)
 
         query = sql.SQL("SELECT {cols} FROM {tname} WHERE {cond} LIMIT 1;").format(
-            cols=column_string,
-            tname=sql.Identifier(table),
-            cond=cond_string
+            cols=column_string, tname=sql.Identifier(table), cond=cond_string
         )
         result = self.execute_query(query, params).fetchone()
 
@@ -154,8 +154,7 @@ class DBSession:
             list: A list of dictionaries representing the rows.
         """
         query = sql.SQL("SELECT {columns} FROM {tname};").format(
-            columns=columns,
-            tname=sql.Identifier(table)
+            columns=columns, tname=sql.Identifier(table)
         )
         return self.execute_query(query).fetchall()
 
@@ -175,9 +174,7 @@ class DBSession:
         cond_string, params = self.__generate_conditions(conditions)
 
         query = sql.SQL("SELECT {cols} FROM {tname} WHERE {cond};").format(
-            cols=column_string,
-            tname=sql.Identifier(table),
-            cond=cond_string
+            cols=column_string, tname=sql.Identifier(table), cond=cond_string
         )
         result = self.execute_query(query, params).fetchall()
 
@@ -189,8 +186,8 @@ class DBSession:
 
         query = sql.SQL("INSERT INTO {table} ({cols}) VALUES ({vals})").format(
             table=sql.Identifier(table),
-            cols=sql.SQL(', ').join(map(sql.Identifier, columns)),
-            vals=sql.SQL(', ').join([sql.Placeholder()] * len(values)),
+            cols=sql.SQL(", ").join(map(sql.Identifier, columns)),
+            vals=sql.SQL(", ").join([sql.Placeholder()] * len(values)),
         )
 
         return self.execute_query(query, tuple(values))

@@ -260,17 +260,17 @@
   .ui.steps:not(.unstackable) .step:last-child {
     border-radius: 0em 0em 0.28571429rem 0.28571429rem;
   }
-  
+
 /* Arrow */
   .ui.steps:not(.unstackable) .step:after {
     display: none !important;
   }
-  
+
 /* Content */
   .ui.steps:not(.unstackable) .step .content {
     text-align: center;
   }
-  
+
 /* Icon */
   .ui.steps:not(.unstackable) .step > .icon,
   .ui.ordered.steps:not(.unstackable) .step:before {
@@ -381,7 +381,7 @@
     overflow: visible;
     flex-direction: column;
   }
-  
+
 /* Steps */
   .ui[class*="tablet stackable"].steps .step {
     flex-direction: column;
@@ -395,17 +395,17 @@
   .ui[class*="tablet stackable"].steps .step:last-child {
     border-radius: 0em 0em 0.28571429rem 0.28571429rem;
   }
-  
+
 /* Arrow */
   .ui[class*="tablet stackable"].steps .step:after {
     display: none !important;
   }
-  
+
 /* Content */
   .ui[class*="tablet stackable"].steps .step .content {
     text-align: center;
   }
-  
+
 /* Icon */
   .ui[class*="tablet stackable"].steps .step > .icon,
   .ui[class*="tablet stackable"].ordered.steps .step:before {
@@ -554,7 +554,7 @@
 .ui.ordered.steps .step.completed:before {
   font-family: 'Step';
   content: '\e800';
-  
+
 /* '' */
 }
 
@@ -562,4 +562,3 @@
 /*******************************
          Site Overrides
 *******************************/
-

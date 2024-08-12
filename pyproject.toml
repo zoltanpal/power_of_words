@@ -2,9 +2,8 @@
 name = "power-of-words"
 version = "0.1.0"
 description = ""
-authors = ["Zoltan Pal <palzoltanet@gmail.com>"]
+authors = ["Zoltan Pal <zoomyster@gmail.com>"]
 readme = "README.md"
-# packages = [{include = "pow"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
@@ -24,6 +23,39 @@ psycopg2 = "^2.9.9"
 torch = "^2.4.0"
 
 
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.2"
+pytest-cov = "^5.0.0"
+
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+
+[tool.mypy]
+warn_unused_configs = "True"
+disallow_untyped_defs = "False"
+ignore_missing_imports = "False"
+exclude = [".venv", "localdev"]
+
+[tool.pylint]
+max-line-length = 120
+# W0212: protected access
+disable = ["W0212"]
+
+[tool.pytest.ini_options]
+python_files = "test_*.py"
+norecursedirs = ".* tmp* __pycache__ alchemy"
+testpaths = [
+    "tests",
+]
+addopts = "--cov=. --cov-report=term-missing"
+
+
+[tool.coverage.run]
+omit = [
+    "__init__.py",
+    "config.py",
+    "tests/*",
+    "localdev/*"
+]

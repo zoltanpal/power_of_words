@@ -23,12 +23,14 @@ DEBUG = True
 HOST = "0.0.0.0"
 PORT = 5000
 
-pow_db_config = DBConfig(dialect='postgresql',
-                         username=os.getenv("PSQL_USER", default="root"),
-                         password=os.getenv("PSQL_PASSWORD", default="my_secret_password"),
-                         dbname="power_of_words",
-                         host=os.getenv("PSQL_HOST", default="localhost"),
-                         port=int(os.getenv("PSQL_PORT", default=5432)))
+pow_db_config = DBConfig(
+    dialect="postgresql",
+    username=os.getenv("PSQL_USER", default="root"),
+    password=os.getenv("PSQL_PASSWORD", default="my_secret_password"),
+    dbname="power_of_words",
+    host=os.getenv("PSQL_HOST", default="localhost"),
+    port=int(os.getenv("PSQL_PORT", default=5432)),
+)
 
 POW_DB_CONFIG = {
     "user": os.getenv("PSQL_USER", default="root"),
@@ -37,11 +39,17 @@ POW_DB_CONFIG = {
     "host": os.getenv("PSQL_HOST", default="localhost"),
     "port": int(os.getenv("PSQL_PORT", default=5432)),
     "minconn": 1,
-    "maxconn": 10
+    "maxconn": 10,
 }
 
-
-pow_db_config_str = f'postgresql+psycopg2://{pow_db_config.username}:{pow_db_config.password}@{pow_db_config.host}/{pow_db_config.dbname}'
+pow_db_config_str = (
+    "postgresql+psycopg2://{db_username}:{db_password}@{db_host}/{db_name}".format(
+        db_username=pow_db_config.username,
+        db_password=pow_db_config.password,
+        db_host=pow_db_config.host,
+        db_name=pow_db_config.dbname,
+    )
+)
 
 # TODO: should fetch from DB
 SOURCES = {
@@ -52,4 +60,4 @@ SOURCES = {
     5: "hirado.hu",
     6: "magyarnemzet.hu",
     7: "index.hu",
-  }
+}

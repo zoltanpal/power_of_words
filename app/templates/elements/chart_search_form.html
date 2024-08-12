@@ -1,7 +1,7 @@
 {% block content %}
 
 <form id="FeedSearchForm" action="{{ url_for('charts.index') }}" class="ui form searchform">
-    <div class="four fields">
+    <div class="three fields">
         <input type="hidden" name="start_date" id="startDateInput"
                value="{{ filters.start_date }}"/>
 
@@ -15,16 +15,17 @@
             <i class="calendar icon"></i>
         </diV>
 
-        <div class="field">
-            <select id="SearchWordsSelectize" name="words" class="ui text" multiple="" placeholder="search for words"></select>
+        <div class="field ui">
+            <select id="SearchWordsSelectize" name="words" class="ui text" multiple=""
+                    placeholder="search for words"></select>
         </div>
 
-        <div class="field">
+        <div class="field ui">
             <input id="free_text" type="text" name="free_text" placeholder="free text search" autocomplete="off"
                    value="{{ filters.free_text }}">
         </div>
 
-        <div class="field">
+        <div class="field ui">
             <input type="submit" value="Search" class="ui primary button"/>
         </div>
     </div>

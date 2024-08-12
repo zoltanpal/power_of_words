@@ -25,7 +25,7 @@ def remove_foto_video_text():
     with db_client.get_db_session() as session:
         result = session.execute(text(TITLES_WITH_FOTO_VIDEO)).fetchall()
     updated_ids = []
-    words_pattern = ['videó', 'videók', 'fotó', 'fotók', 'videókkal', 'fotókkal']
+    words_pattern = ["videó", "videók", "fotó", "fotók", "videókkal", "fotókkal"]
     if result:
         rows = list(result)
         for row in rows:
@@ -33,9 +33,13 @@ def remove_foto_video_text():
             cleaned_title = remove_photo_video(row[1]).strip()
             cleaned_words = [item for item in row[2] if item not in words_pattern]
 
-            stmt = (update(Feeds).where(Feeds.id == feed_id).values(title=cleaned_title,
-                                                                    words=cleaned_words,
-                                                                    updated=datetime.now()))
+            stmt = (
+                update(Feeds)
+                .where(Feeds.id == feed_id)
+                .values(
+                    title=cleaned_title, words=cleaned_words, updated=datetime.now()
+                )
+            )
 
             session.execute(stmt)
             session.commit()

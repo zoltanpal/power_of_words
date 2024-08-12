@@ -1,8 +1,53 @@
-/.env
-/.venv/
-.idea/
-__pycache__/**
+# These are some examples of commonly ignored file patterns.
+# You should customize this list as applicable to your project.
+# Learn more about .gitignore:
+#     https://www.atlassian.com/git/tutorials/saving-changes/gitignore
+
+# Node artifact files
+node_modules/
+dist/
+
+# Compiled Java class files
+*.class
+
+# Compiled Python bytecode
+*.py[cod]
+
+# Log files
 *.log
-__pycache__/
+
+# Package files
+*.jar
+
+# Applications
+*.app
+*.exe
+*.war
+
+# Large media files
+*.mp4
+*.tiff
+*.avi
+*.flv
+*.mov
+*.wmv
+
+
+**__pycache__*
+**.idea
+**~
+**.vscode
+**.DS_Store*
+.mypy_cache
+.poetry
+/.env
+venv
+.venv
+investigations
+localdev
+.coverage*
+test-reports/**
+
+# Pytest
 .coverage
-.cache
+.pytest_cache

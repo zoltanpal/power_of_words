@@ -26,7 +26,7 @@ Package.onUse(function(api) {
     // flags
     'themes/default/assets/images/flags.png'
   ], 'client');
-  
+
   api.addFiles([
     // release
     'semantic.css',
