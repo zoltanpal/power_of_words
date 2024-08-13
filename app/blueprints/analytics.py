@@ -124,7 +124,7 @@ def index():
     most_common_words_raw = get_most_common_words(filters=filters, most_common=40)
     most_common_words: List[dict] = [
         {"name": word[0], "weight": word[1]} for word in most_common_words_raw
-    ] # pragme: no cover
+    ]  # pragme: no cover
     return render_template(
         "pages/analytics.html",
         page_title=page_title,
