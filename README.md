@@ -10,7 +10,8 @@ categorizing it as positive, negative, or neutral. My analysis delves deep into 
 highlighting how specific language choices can shape the tone and influence the reader.
 
 ## Key Features
-Real-Time Sentiment Analysis: Get up-to-the-minute sentiment evaluations of the latest news articles.
+#### Real-Time Sentiment Analysis: 
+    Get up-to-the-minute sentiment evaluations of the latest news articles.
 Comprehensive Sentiment Categories: Understand the emotional tone of articles with clear positive, 
 negative, and neutral classifications.
 
