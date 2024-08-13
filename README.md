@@ -10,13 +10,7 @@ categorizing it as positive, negative, or neutral. My analysis delves deep into 
 highlighting how specific language choices can shape the tone and influence the reader.
 
 ## Key Features
-#### Real-Time Sentiment Analysis: 
-    Get up-to-the-minute sentiment evaluations of the latest news articles.
-Comprehensive Sentiment Categories: Understand the emotional tone of articles with clear positive, 
-negative, and neutral classifications.
-
-Influence Insights: Discover how specific words and phrases can impact reader perception and sentiment.
-
-Intuitive Visualizations: Explore sentiment trends and patterns through interactive charts and graphs, making it easy to interpret complex data at a glance.
-
-Extensive News Coverage: Stay updated with a broad range of Hungarian news sources, ensuring you don't miss any critical updates.
+#### Real-Time Sentiment Analysis
+#### Comprehensive Sentiment Categories
+#### Influence Insights
+#### Intuitive Visualizations
