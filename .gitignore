@@ -32,8 +32,6 @@ dist/
 *.mov
 *.wmv
 
-*.sh
-
 **__pycache__*
 **.idea
 **~
