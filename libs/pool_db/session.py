@@ -5,10 +5,8 @@ import psycopg2
 from psycopg2 import pool, sql
 from psycopg2.extras import RealDictCursor
 
-from config import POW_DB_CONFIG
 
-
-class DBSession:
+class PoolDBSession:
     """
     A class to manage PostgreSQL database sessions using connection pooling.
 
@@ -153,9 +151,8 @@ class DBSession:
         Returns:
             list: A list of dictionaries representing the rows.
         """
-        query = sql.SQL("SELECT {columns} FROM {tname};").format(
-            columns=columns, tname=sql.Identifier(table)
-        )
+
+        query = sql.SQL("SELECT * FROM {tname};").format(tname=sql.Identifier(table))
         return self.execute_query(query).fetchall()
 
     def select(self, table: str, columns: List[str] = None, conditions: dict = None):
@@ -204,18 +201,3 @@ class DBSession:
             str or any: The sanitized input value.
         """
         return value.replace("'", "''") if isinstance(value, str) else value
-
-
-with DBSession(db_config=POW_DB_CONFIG) as session:
-    query = """
-        SELECT id, title, published, search_vector, source_id
-        FROM feeds
-        WHERE search_vector @@ to_tsquery('simple', 'háború & Orbán') and published > '2024-07-01 01:57:00'
-        order by published desc;
-    """
-    result = session.execute_query(query=query).fetchall()
-    # conditions = {"source_id": 4}
-    # columns = ["id", "title"]
-    # result = session.select(table="feeds", columns=columns, conditions=conditions)
-    for row in result:
-        print(row)

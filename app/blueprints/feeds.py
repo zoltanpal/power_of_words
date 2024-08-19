@@ -4,7 +4,7 @@ from flask_sqlalchemy.pagination import Pagination
 from app.models.feed_db_filters import FeedDBFilters
 from app.models.feeds import Feeds
 from config import SOURCES
-from libs.database import db, get_session
+from libs.database import db, get_db_session
 
 feeds_bp = Blueprint("feeds", __name__, url_prefix="/feeds")
 
@@ -12,7 +12,7 @@ feeds_bp = Blueprint("feeds", __name__, url_prefix="/feeds")
 def get_data(
     filters: FeedDBFilters = None, page: int = 1, max_per_page: int = 20
 ) -> Pagination:
-    session = get_session()
+    session = get_db_session()
 
     query = (
         session.query(Feeds).filter(filters.conditions).order_by(Feeds.published.desc())

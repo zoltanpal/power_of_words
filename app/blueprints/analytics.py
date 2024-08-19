@@ -7,7 +7,7 @@ from sqlalchemy import text
 from app.models.feed_db_filters import FeedDBFilters
 from app.models.feeds import Feeds
 from config import SOURCES
-from libs.database import get_session
+from libs.database import get_db_session
 
 analytics_bp = Blueprint("charts", __name__, url_prefix="/analytics")
 
@@ -38,7 +38,7 @@ def get_sentiment_grouped(
         ORDER BY {order_by};
     """
 
-    session = get_session()
+    session = get_db_session()
 
     return session.execute(
         text(stmt),
@@ -81,7 +81,7 @@ def generate_sentiment_by_source_series(input_data):
 
 
 def get_most_common_words(filters, most_common: int = 20):
-    session = get_session()
+    session = get_db_session()
 
     cursor_result = session.query(
         Feeds.words,

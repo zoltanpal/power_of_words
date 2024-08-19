@@ -8,6 +8,11 @@ html, body {
 
 }
 
+#page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
 p {
     font-weight: 300;
 }
@@ -92,6 +97,19 @@ h3.item.brand a {
 }
 
 .pagination .buttons button.button {
-    font-family: 'Roboto', sans-serif !important;
+    font-family: "Open Sans", sans-serif !important;
+    font-weight: 400 !important;
 
+}
+
+#footer {
+background: #fff;
+  width: 100%;
+  padding: 20px 0 20px 0 !important;
+  margin-top: 10px;
+  height: 50px;
+  border-top: 2px solid rgba(34, 36, 38, .15);
+  text-align: center;
+  font-weight: 400;
+  color: #868e96;
 }

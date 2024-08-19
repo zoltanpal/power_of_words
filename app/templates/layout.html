@@ -35,12 +35,16 @@
 
 </head>
 <body>
-{% include 'elements/menu.html' %}
+<div id="page-container">
+    {% include 'elements/menu.html' %}
 
-<div class="ui container" style="height: 100%;">
-    {% block content %}{% endblock %}
+    <div class="ui container" style="height: 100%;">
+        {% block content %}{% endblock %}
+    </div>
+    <footer id="footer">
+        2024 @ Power of Words&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://palzoltan.net" target="_blank">palzoltan.net</a>
+    </footer>
 </div>
-
 </body>
 
 

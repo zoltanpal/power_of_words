@@ -51,3 +51,4 @@ test-reports/**
 # Pytest
 .coverage
 .pytest_cache
+/jobs/old/

@@ -28,7 +28,7 @@ def initialize_database(app):
         Base.prepare(db.engine, reflect=True)  # Prepare the ORM base class
 
 
-def get_session() -> Session:
+def get_db_session() -> Session:
     """
     Creates and returns a new SQLAlchemy session.
 
