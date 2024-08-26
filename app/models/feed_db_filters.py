@@ -49,33 +49,6 @@ class FeedDBFilters:
         # Create and_ clause if there are conditions
         return and_(*conditions) if conditions else None
 
-    """
-    def generate_query_conditions(self):
-        conditions = []
-
-        if self.start_date:
-            conditions.append(f'feed_date >= {self.start_date}')
-
-        if self.end_date:
-            conditions.append(f'feed_date <= {self.end_date}')
-
-        if self.words:
-            words_cond = [word.lower().strip() for word in self.words]
-            conditions.append(Feeds.words.contains(words_cond))
-
-        if self.sources:
-            sources_cond = [int(source) for source in self.sources]
-            conditions.append(Feeds.source_id.in_(sources_cond))
-
-        if self.free_text:
-            search = f"%{self.free_text}%"
-            conditions.append(Feeds.title.ilike(search))
-
-    @property
-    def query_conditions(self):
-        return self.generate_query_conditions()
-    """
-
     @property
     def conditions(self):
         return self.generate_conditions()
