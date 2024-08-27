@@ -4,7 +4,9 @@ from flask_cors import CORS
 import config
 from app.blueprints.analytics import analytics_bp
 from app.blueprints.feeds import feeds_bp
+from app.blueprints.realtime_analysis import rt_analysis_bp
 from app.filters.custom_filters import initialize_filters
+from flask_session import Session
 from libs.database import initialize_database
 
 # Create Flask API
@@ -27,6 +29,11 @@ initialize_filters()
 # Flask Blueprints
 app.register_blueprint(feeds_bp)
 app.register_blueprint(analytics_bp)
+app.register_blueprint(rt_analysis_bp)
+
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
 
 
 # Flask Base Routing

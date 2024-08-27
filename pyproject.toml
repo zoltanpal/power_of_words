@@ -21,6 +21,7 @@ transformers = "^4.40.0"
 pandas = "^2.2.2"
 psycopg2 = "^2.9.9"
 torch = "^2.4.0"
+flask-session = "^0.8.0"
 
 
 [tool.poetry.group.dev.dependencies]

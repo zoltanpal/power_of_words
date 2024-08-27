@@ -1,0 +1,79 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div class="ui segment feed large">
+    <h2>Real-Time Analysis</h2>
+    <div class="description">
+        Enter comma-separated RSS feed links in the input field,
+        then click the button to analyze the sentiment of the news headlines.
+        <br/><b>Please note:</b> At this time, only English text is supported,
+        but additional language support will be available soon.
+    </div>
+
+    <form id="RssLinksForm" action="{{ url_for('realtime_analysis.index') }}" class="ui form searchform">
+        <div class="two fields">
+
+            <div class="field ui">
+                <input type="text" name="rss_links" id="rss_links" placeholder="List of RSS links separated with coma"
+                       autocomplete="off"
+                       value="{{ form_rss_links }}"></input>
+            </div>
+            <div class="field ui">
+                <input type="submit" value="Get rss and analyse" class="ui primary button"/>
+            </div>
+        </div>
+    </form>
+
+
+</div>
+
+{% if rss_sentiment_result %}
+
+    <div class="ui segment feed large">
+        {% for feed in rss_sentiment_result %}
+
+        <div class="event" style="margin: 10px 0 20px 0">
+            <div class="content">
+                <div class="ui grid middle aligned">
+                    <div class="thirteen wide column">
+                        <h3 style="font-size: 1.5em; margin: 5px 0 10px 0; font-weight: 400; color: #2f4550;">
+                            {{ feed.title }}&nbsp;
+
+                        </h3>
+                        <div class="date" style="margin-left: 0px; font-size: 0.9em">
+                            {{ feed.published }}&nbsp;&bull;&nbsp;{{feed.source }}
+                        </div>
+                    </div>
+                    <div class="three wide column">
+                        {% if feed.sentiments.compound < 0.0 %}
+                        <div class="ui label big basic red">
+                            Negative
+                        </div>
+                        {% endif %}
+
+                        {% if feed.sentiments.compound > 0.0 %}
+                        <div class="ui label big basic green">
+                            Positive
+                        </div>
+                        {% endif %}
+
+                        {% if feed.sentiments.compound == 0.0 %}
+                        <div class="ui label big basic">
+                            Neutral
+                        </div>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ui divider"></div>
+
+        {% endfor %}
+
+    </div>
+
+{% endif %}
+
+{% endblock %}
