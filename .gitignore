@@ -51,3 +51,4 @@ test-reports/**
 .coverage
 .pytest_cache
 /jobs/old/
+/flask_session/
