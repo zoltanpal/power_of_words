@@ -22,6 +22,8 @@ pandas = "^2.2.2"
 psycopg2 = "^2.9.9"
 torch = "^2.4.0"
 flask-session = "^0.8.0"
+torchvision = "^0.19.1"
+torchaudio = "^2.4.1"
 
 
 [tool.poetry.group.dev.dependencies]
